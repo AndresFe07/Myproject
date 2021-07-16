@@ -10,7 +10,7 @@
 	<groupId>com.assert.solutions</groupId>
 	<artifactId>MyProjectAssert</artifactId>
 	<version>1.0.0</version>
-	<name>MyProjectAssert</name>
+	<name>myproject</name>
 	<description>Project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
