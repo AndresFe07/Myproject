@@ -14,7 +14,22 @@
 	<description>Project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
+		<spring-boot.version>2.1.15.RELEASE</spring-boot.version>
+    		<spring-boot-maven-plugin.version>2.1.15.RELEASE</spring-boot-maven-plugin.version>
 	</properties>
+	
+	<dependencyManagement>
+	    <dependencies>
+	      <dependency>
+		<groupId>me.snowdrop</groupId>
+		<artifactId>spring-boot-bom</artifactId>
+		<version>2.1.15.Final-redhat-00001</version>
+		<type>pom</type>
+		<scope>import</scope>
+	      </dependency>
+	    </dependencies>
+	  </dependencyManagement>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -40,7 +55,24 @@
 			<artifactId>validation-api</artifactId>
 		</dependency>
 	</dependencies>
+	<!-- Specify the repositories containing Spring Boot artifacts. -->
+	  <repositories>
+	    <repository>
+	      <id>redhat-ga</id>
+	      <name>Red Hat GA Repository</name>
+	      <url>https://maven.repository.redhat.com/ga/</url>
+	    </repository>
+	  </repositories>
 
+	  <!-- Specify the repositories containing the plugins used to execute the build of your application. -->
+	  <pluginRepositories>
+	    <pluginRepository>
+	      <id>redhat-ga</id>
+	      <name>Red Hat GA Repository</name>
+	      <url>https://maven.repository.redhat.com/ga/</url>
+	    </pluginRepository>
+	  </pluginRepositories>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -54,6 +86,21 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-maven-plugin</artifactId>
+			    <version>${spring-boot-maven-plugin.version}</version>
+			    <executions>
+				<execution>
+				    <goals>
+					<goal>repackage</goal>
+				    </goals>
+				</execution>
+			      </executions>
+			    <configuration>
+				<redeploy>true</redeploy>
+			    </configuration>
 			</plugin>
 		</plugins>
 	<finalName>MyprojectAssert</finalName>
